@@ -3,7 +3,7 @@ import { IRSidebar } from "./Sidebar/Sidebar";
 
 export const IRWrapper = () => {
   return (
-    <div className="h-full">
+    <div className="h-screen">
       <IRSidebar />
     </div>
   );

@@ -5,7 +5,7 @@ import { SidebarButton } from "./SidebarButton";
 
 export const IRSidebar = () => {
   return (
-    <div className="h-screen w-[219px] border-r border-black border-opacity-10 shrink-0">
+    <div className="h-screen w-[219px] border-r border-black border-opacity-10 shrink-0 flex flex-col">
       <div className="px-3 py-5 font-bold">Inline Rejection</div>
       <div className="px-3 flex flex-col w-full">
         <Button variant="secondary">
@@ -13,8 +13,8 @@ export const IRSidebar = () => {
           Encode
         </Button>
       </div>
-      <div className="flex mt-5 px-3 flex-col justify-between h-full">
-        <div className="flex flex-col gap-1">
+      <div className="h-full">
+        <div className="flex flex-col gap-1 p-3">
           <SidebarButton>
             <LayoutDashboard size={14} />
             Dashboard
@@ -28,11 +28,11 @@ export const IRSidebar = () => {
             History
           </SidebarButton>
         </div>
-        <div className="flex flex-col">
-          <SidebarButton>
-            <span>Help & Support</span>
-          </SidebarButton>
-        </div>
+      </div>
+      <div className="flex flex-col p-3">
+        <SidebarButton>
+          <span>Help & Support</span>
+        </SidebarButton>
       </div>
     </div>
   );
