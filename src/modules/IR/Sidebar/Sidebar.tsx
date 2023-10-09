@@ -8,7 +8,7 @@ export const IRSidebar = () => {
     <div className="h-screen w-[219px] border-r border-black border-opacity-10 shrink-0 flex flex-col">
       <div className="px-3 py-5 font-bold">Inline Rejection</div>
       <div className="px-3 flex flex-col w-full">
-        <Button variant="secondary">
+        <Button variant="secondary" className="shadow-md">
           <PlusIcon size={15} />
           Encode
         </Button>

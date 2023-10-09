@@ -4,6 +4,7 @@ import { Bar } from "@visx/shape";
 import { useEffect, useMemo, useState } from "react";
 import { ParentSize } from "@visx/responsive";
 import { Text } from "@visx/text";
+import { useObservable } from "@legendapp/state/react";
 
 //! I can't understand any of this shit after i slept
 
@@ -30,8 +31,9 @@ export const ElBarChart = ({
   hoverVal?: number;
   onHover?: (d: BarChartData) => void;
 }) => {
-  const [hoveringId, setHoveringId] = useState<number>(data.length - 1);
-  const [dValue, setDValue] = useState<BarChartData>(data[hoveringId]);
+  // const [hoveringId, setHoveringId] = useState<number>(data.length - 1);
+  const hoveringId = useObservable<number>(data.length - 1);
+  const [dValue, setDValue] = useState<BarChartData>(data[hoveringId.get()]);
 
   const xMax = width;
   const yMax = height - vMargin;
@@ -62,9 +64,9 @@ export const ElBarChart = ({
   );
 
   useEffect(() => {
-    setDValue(data[hoveringId]);
+    setDValue(data[hoveringId.get()]);
     onHover(dValue);
-  }, [hoveringId, data, dValue]);
+  }, [hoveringId.get(), data, dValue]);
 
   return (
     <svg
@@ -74,7 +76,7 @@ export const ElBarChart = ({
       preserveAspectRatio="none"
       style={{ overflow: "visible" }}
       onMouseLeave={() => {
-        setHoveringId(data.length - 1);
+        hoveringId.set(data.length - 1);
       }}
     >
       <Group top={vMargin / 2} width={width} height={height} overflow={"clip"}>
@@ -94,7 +96,7 @@ export const ElBarChart = ({
                 height={bHeight}
                 rx="5"
                 ry="5"
-                fill={hoveringId == i ? "#ff5d32" : "#d2d1d6"}
+                fill={hoveringId.get() == i ? "#ff5d32" : "#d2d1d6"}
                 onClick={() => console.log(data[i].value)}
               />
               <Group>
@@ -105,10 +107,10 @@ export const ElBarChart = ({
                   textAnchor="middle"
                   fill={
                     i % 5 == 0
-                      ? i + 1 == hoveringId || i - 1 == hoveringId
+                      ? i + 1 == hoveringId.get() || i - 1 == hoveringId.get()
                         ? "transparent"
                         : ""
-                      : hoveringId == i
+                      : hoveringId.get() == i
                       ? ""
                       : "transparent"
                   }
@@ -124,7 +126,7 @@ export const ElBarChart = ({
                 fill="transparent"
                 height={yMax}
                 onMouseOver={() => {
-                  setHoveringId(i);
+                  hoveringId.set(i);
                   onHover(d);
                 }}
               />
