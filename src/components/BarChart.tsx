@@ -4,7 +4,6 @@ import { Bar } from "@visx/shape";
 import { useEffect, useMemo, useState } from "react";
 import { ParentSize } from "@visx/responsive";
 import { Text } from "@visx/text";
-import { useObservable } from "@legendapp/state/react";
 
 //! I can't understand any of this shit after i slept
 
@@ -31,9 +30,8 @@ export const ElBarChart = ({
   hoverVal?: number;
   onHover?: (d: BarChartData) => void;
 }) => {
-  // const [hoveringId, setHoveringId] = useState<number>(data.length - 1);
-  const hoveringId = useObservable<number>(data.length - 1);
-  const [dValue, setDValue] = useState<BarChartData>(data[hoveringId.get()]);
+  const [hoveringId, setHoveringId] = useState<number>(data.length - 1);
+  const [dValue, setDValue] = useState<BarChartData>(data[hoveringId]);
 
   const xMax = width;
   const yMax = height - vMargin;
@@ -64,9 +62,16 @@ export const ElBarChart = ({
   );
 
   useEffect(() => {
-    setDValue(data[hoveringId.get()]);
+    setDValue(data[hoveringId]);
     onHover(dValue);
-  }, [hoveringId.get(), data, dValue]);
+  }, [hoveringId, data, dValue]);
+
+  // const fillData = useMemo(() => {
+  //   let average = data.reduce((acc, cum) => acc + cum.value, 0) / data.length;
+  //   const orangeThreshold = average * 0.75;
+  //   const redThreshold = average;
+  //   return { average, orangeThreshold, redThreshold };
+  // }, [data]);
 
   return (
     <svg
@@ -76,7 +81,7 @@ export const ElBarChart = ({
       preserveAspectRatio="none"
       style={{ overflow: "visible" }}
       onMouseLeave={() => {
-        hoveringId.set(data.length - 1);
+        setHoveringId(data.length - 1);
       }}
     >
       <Group top={vMargin / 2} width={width} height={height} overflow={"clip"}>
@@ -96,7 +101,7 @@ export const ElBarChart = ({
                 height={bHeight}
                 rx="5"
                 ry="5"
-                fill={hoveringId.get() == i ? "#ff5d32" : "#d2d1d6"}
+                fill={hoveringId == i ? "#ff5d32" : "#d2d1d6"}
                 onClick={() => console.log(data[i].value)}
               />
               <Group>
@@ -107,10 +112,10 @@ export const ElBarChart = ({
                   textAnchor="middle"
                   fill={
                     i % 5 == 0
-                      ? i + 1 == hoveringId.get() || i - 1 == hoveringId.get()
+                      ? i + 1 == hoveringId || i - 1 == hoveringId
                         ? "transparent"
                         : ""
-                      : hoveringId.get() == i
+                      : hoveringId == i
                       ? ""
                       : "transparent"
                   }
@@ -126,7 +131,7 @@ export const ElBarChart = ({
                 fill="transparent"
                 height={yMax}
                 onMouseOver={() => {
-                  hoveringId.set(i);
+                  setHoveringId(i);
                   onHover(d);
                 }}
               />
