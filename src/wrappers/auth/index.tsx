@@ -6,6 +6,7 @@ export const AuthWrapper = ({ children }: { children: React.ReactNode }) => {
   const auth = useAuth0();
 
   useEffect(() => {
+    console.log(auth.isAuthenticated);
     if (!auth.isLoading && !auth.isAuthenticated) auth.loginWithRedirect();
   }, [auth.isLoading, auth.isAuthenticated, auth]);
 

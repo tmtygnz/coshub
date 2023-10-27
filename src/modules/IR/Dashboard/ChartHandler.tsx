@@ -17,9 +17,9 @@ export const ChartHandler = ({
           onHover={(data) => setHoverValue(data.value)}
         />
       </div>
-      <div className="flex w-full justify-between">
-        <p className="font-bold">{hoverValue}</p>
-        <p className="text-blue-500 font-bold">{meaning}</p>
+      <div className="flex w-full justify-between items-center mt-2">
+        <p className="font-bold transition duration-1000">{hoverValue}</p>
+        <p className="text-xs font-semibold opacity-50">{meaning}</p>
       </div>
     </>
   );

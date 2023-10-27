@@ -5,10 +5,10 @@ import { SidebarButton } from "./SidebarButton";
 
 export const IRSidebar = () => {
   return (
-    <div className="h-screen w-[219px] border-r border-black border-opacity-10 shrink-0 flex flex-col">
+    <div className="h-screen w-[250px] border-r border-black border-opacity-10 shrink-0 flex flex-col">
       <div className="px-3 py-5 font-bold">Inline Rejection</div>
       <div className="px-3 flex flex-col w-full">
-        <Button variant="secondary" className="shadow-md">
+        <Button variant="secondary">
           <PlusIcon size={15} />
           Encode
         </Button>

@@ -101,7 +101,7 @@ export const ElBarChart = ({
                 height={bHeight}
                 rx="5"
                 ry="5"
-                fill={hoveringId == i ? "#ff5d32" : "#d2d1d6"}
+                fill={hoveringId == i ? "#0035fe" : "#d2d1d6"}
                 onClick={() => console.log(data[i].value)}
               />
               <Group>

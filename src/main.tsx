@@ -9,13 +9,14 @@ import { IRDashboard } from "./modules/IR/Dashboard/IRDashboard.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <div className="text-sm">
+    <div className="">
       <Auth0Provider
         domain="zolu.jp.auth0.com"
         clientId="o50BejLEHbSy3UeFO8IfhSt2ZMdSothr"
         authorizationParams={{
           redirect_uri: window.location.origin,
         }}
+        cacheLocation="localstorage"
       >
         <AuthWrapper>
           <BrowserRouter>
