@@ -14,6 +14,7 @@
     "@legendapp/state": "^1.11.1",
     "@radix-ui/react-slot": "^1.0.2",
     "@supabase/supabase-js": "^2.38.0",
+    "@types/web": "^0.0.119",
     "@visx/group": "^3.3.0",
     "@visx/responsive": "^3.3.0",
     "@visx/scale": "^3.3.0",

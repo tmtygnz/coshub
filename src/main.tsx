@@ -5,11 +5,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { AuthWrapper } from "./wrappers/auth/index.tsx";
 import { IRWrapper } from "./modules/IR/IRWrapper.tsx";
-import { IRDashboard } from "./modules/IR/Dashboard/IRDashboard.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <div className="">
+    <div className="bg-neutral-100 text-sm">
       <Auth0Provider
         domain="zolu.jp.auth0.com"
         clientId="o50BejLEHbSy3UeFO8IfhSt2ZMdSothr"
@@ -22,7 +21,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <BrowserRouter>
             <Routes>
               <Route path="/IR" element={<IRWrapper />}>
-                <Route path="dashboard" element={<IRDashboard />} />
               </Route>
             </Routes>
           </BrowserRouter>
