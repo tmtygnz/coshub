@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { AuthWrapper } from "./wrappers/auth/index.tsx";
 import { IRWrapper } from "./modules/IR/IRWrapper.tsx";
+import { IrDashboardContainer } from "./modules/IR/dashboard/IrDashboardContainer.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <BrowserRouter>
             <Routes>
               <Route path="/IR" element={<IRWrapper />}>
+                <Route path="dashboard" element={<IrDashboardContainer />} />
               </Route>
             </Routes>
           </BrowserRouter>

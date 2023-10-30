@@ -7,14 +7,14 @@ import { Text } from "@visx/text";
 
 //! I can't understand any of this shit after i slept
 
-export interface BarChartData {
+export interface ChartData {
   label: string;
   value: number;
 }
 
 // accessors
-const getLabel = (d: BarChartData) => d.label;
-const getValue = (d: BarChartData) => d.value * 100;
+const getLabel = (d: ChartData) => d.label;
+const getValue = (d: ChartData) => d.value * 100;
 
 export const ElBarChart = ({
   data,
@@ -23,15 +23,15 @@ export const ElBarChart = ({
   vMargin = 0,
   onHover = () => {},
 }: {
-  data: Array<BarChartData>;
+  data: Array<ChartData>;
   width: number;
   height: number;
   vMargin?: number;
   hoverVal?: number;
-  onHover?: (d: BarChartData) => void;
+  onHover?: (d: ChartData) => void;
 }) => {
   const [hoveringId, setHoveringId] = useState<number>(data.length - 1);
-  const [dValue, setDValue] = useState<BarChartData>(data[hoveringId]);
+  const [dValue, setDValue] = useState<ChartData>(data[hoveringId]);
 
   const xMax = width;
   const yMax = height - vMargin;
@@ -146,10 +146,10 @@ export const ElBarChart = ({
 export const BarChartResponsive = ({
   ...props
 }: {
-  data: Array<BarChartData>;
+  data: Array<ChartData>;
 
   vMargin?: number;
-  onHover?: (d: BarChartData) => void;
+  onHover?: (d: ChartData) => void;
 }) => {
   return (
     <ParentSize>
