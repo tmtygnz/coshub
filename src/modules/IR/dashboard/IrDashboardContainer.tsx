@@ -3,6 +3,7 @@ import { ChartData } from "../../../components/BarChart";
 import { getNecessaryData } from "./ChartDataHandler";
 import { ChartComponent } from "./ChartComponent";
 import { Calendar, ListChecks } from "lucide-react";
+import { DefectListView } from "./DefectsListView";
 
 export const IrDashboardContainer = () => {
   const [graphData, setGraphData] = useState<{
@@ -27,7 +28,7 @@ export const IrDashboardContainer = () => {
   }, []);
 
   return (
-    <div className="h-full w-full px-5 py-5 ">
+    <div className="h-full w-full px-5 py-5 overflow-auto">
       <h1 className="text-xl font-bold">Dashboard</h1>
       <div className="h-3/5 flex gap-2 mt-5">
         {graphData && (
@@ -53,6 +54,13 @@ export const IrDashboardContainer = () => {
           </>
         )}
       </div>
+      <div className="flex gap-2 justify-between">
+        <span>Id</span>
+        <span>Id</span>
+        <span>Id</span>
+        <span>Id</span>
+      </div>
+      <DefectListView />
     </div>
   );
 };
