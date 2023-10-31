@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ChartData } from "../../../components/BarChart";
 import { getNecessaryData } from "./ChartDataHandler";
 import { ChartComponent } from "./ChartComponent";
+import { Calendar, ListChecks } from "lucide-react";
 
 export const IrDashboardContainer = () => {
   const [graphData, setGraphData] = useState<{
@@ -26,9 +27,32 @@ export const IrDashboardContainer = () => {
   }, []);
 
   return (
-    <div className="h-full w-full px-5 py-5">
+    <div className="h-full w-full px-5 py-5 ">
       <h1 className="text-xl font-bold">Dashboard</h1>
-      <ChartComponent data={graphData?.sumDef.summarizedDefects!}/>
+      <div className="h-3/5 flex gap-2 mt-5">
+        {graphData && (
+          <>
+            <ChartComponent
+              data={graphData.sumDef.summarizedDefects}
+              title={
+                <>
+                  <Calendar size={16} />
+                  <h2 className="font-bold text-sm">Defects Encoded</h2>
+                </>
+              }
+            />
+            <ChartComponent
+              data={graphData.sumEnc.summarizedEncodes}
+              title={
+                <>
+                  <ListChecks size={16} />
+                  <h2 className="font-bold text-sm">Encode Throughput</h2>
+                </>
+              }
+            />
+          </>
+        )}
+      </div>
     </div>
   );
 };
