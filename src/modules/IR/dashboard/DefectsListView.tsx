@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Database } from "../../../lib/supabase/database";
 import { fetchDefects } from "./DefectListViewDataHandler";
 import { DefectCard } from "./DefectCard";
 import { NestedDefects } from "../../../types/defects";
