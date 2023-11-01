@@ -12,3 +12,4 @@ export type NestedDefects = Defects & {
   products: Products;
 };
 // I really hate supabase's typescript types
+//TODO: Rename supabase columns e.g. packaging -> packacingRefId. This change will make `NestedDefect` less confusing. This will only be implemented after IR is finsihed.
