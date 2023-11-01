@@ -4,7 +4,6 @@ import { getNecessaryData } from "./ChartDataHandler";
 import { ChartComponent } from "./ChartComponent";
 import { Calendar, ListChecks } from "lucide-react";
 import { DefectListView } from "./DefectsListView";
-import { Input } from "../../../components/Input";
 
 export const IrDashboardContainer = () => {
   const [graphData, setGraphData] = useState<{
@@ -55,7 +54,6 @@ export const IrDashboardContainer = () => {
           </>
         )}
       </div>
-
       <DefectListView />
     </div>
   );

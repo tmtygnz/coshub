@@ -5,11 +5,13 @@ import { NestedDefects } from "../../../types/defects";
 import { Input } from "../../../components/Input";
 import ReactPaginate from "react-paginate";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { Combobox } from "../../../components/Combobox";
 
 export const DefectListView = () => {
   const [defects, setDefects] = useState<Array<NestedDefects>>([]);
   const [page, setPage] = useState<number>(0);
   const [defectCount, setCount] = useState<number>(0);
+  const [searchBy, setSearchBy] = useState<number>(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,9 +25,21 @@ export const DefectListView = () => {
 
   //TODO: Move react paginate to a standalone component
   return (
-    <div>
+    <div className="flex flex-col mt-6">
       <div className="flex items-center justify-between">
-        <Input />
+        <div className="gap-2 flex">
+          <Input className="w-64" />
+          <Combobox
+            data={[
+              { value: 0, label: "Product" },
+              { value: 1, label: "Defect" },
+              { value: 2, label: "Packaging" },
+              { value: 3, label: "Encoder" },
+            ]}
+            selected={searchBy}
+            setSelectedData={setSearchBy}
+          />
+        </div>
         <ReactPaginate
           breakLabel="..."
           nextLabel={
