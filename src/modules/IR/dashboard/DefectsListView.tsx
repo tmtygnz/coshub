@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { Database } from "../../../lib/supabase/database";
 import { fetchDefects } from "./DefectListViewDataHandler";
 import { DefectCard } from "./DefectCard";
+import { NestedDefects } from "../../../types/defects";
 
 export const DefectListView = () => {
-  const [defects, setDefects] = useState<
-    Array<Database["public"]["Tables"]["defects"]["Row"]>
-  >([]);
+  const [defects, setDefects] = useState<Array<NestedDefects>>([]);
   const [page, setPage] = useState<number>(0);
 
   useEffect(() => {

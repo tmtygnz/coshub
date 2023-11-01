@@ -54,11 +54,12 @@ export const IrDashboardContainer = () => {
           </>
         )}
       </div>
-      <div className="flex gap-2 justify-between">
-        <span>Id</span>
-        <span>Id</span>
-        <span>Id</span>
-        <span>Id</span>
+      <div className="grid grid-cols-6 grid-rows-1 p-2 bg-neutral-300 rounded-md font-bold text-neutral-600 mt-3">
+        <span className="col-span-2">Product with Defect</span>
+        <span>Description</span>
+        <span>Quantity</span>
+        <span>Description</span>
+        <span>Encoded by</span>
       </div>
       <DefectListView />
     </div>
