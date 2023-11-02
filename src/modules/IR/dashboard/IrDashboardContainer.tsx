@@ -28,7 +28,7 @@ export const IrDashboardContainer = () => {
   }, []);
 
   return (
-    <div className="h-full w-full px-5 py-5 overflow-auto">
+    <div className="h-full w-full px-5 py-5 overflow-auto stable-scroll">
       <h1 className="text-xl font-bold">Dashboard</h1>
       <div className="h-3/5 flex gap-2 mt-5">
         {graphData && (

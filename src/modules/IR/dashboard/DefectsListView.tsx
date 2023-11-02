@@ -12,23 +12,28 @@ export const DefectListView = () => {
   const [page, setPage] = useState<number>(0);
   const [defectCount, setCount] = useState<number>(0);
   const [searchBy, setSearchBy] = useState<number>(0);
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data, count } = await fetchDefects(page);
+      const { data, count } = await fetchDefects(page, searchQuery);
       setDefects(data);
       setCount(count!);
       console.log(count);
     };
     fetchData();
-  }, [page]);
+  }, [page, searchQuery]);
 
   //TODO: Move react paginate to a standalone component
   return (
     <div className="flex flex-col mt-6">
       <div className="flex items-center justify-between">
         <div className="gap-2 flex">
-          <Input className="w-64" />
+          <Input
+            className="w-64"
+            value={searchQuery}
+            onChange={(ev) => setSearchQuery(ev.currentTarget.value)}
+          />
           <Combobox
             data={[
               { value: 0, label: "Product" },
