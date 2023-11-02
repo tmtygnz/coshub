@@ -12,6 +12,7 @@
   "dependencies": {
     "@auth0/auth0-react": "^2.2.1",
     "@legendapp/state": "^1.11.1",
+    "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-slot": "^1.0.2",
     "@supabase/supabase-js": "^2.38.0",
@@ -33,7 +34,8 @@
     "react-router-dom": "^6.16.0",
     "recharts": "^2.9.0",
     "tailwind-merge": "^1.14.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "ts-pattern": "^5.0.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

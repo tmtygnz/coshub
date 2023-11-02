@@ -23,8 +23,8 @@ export const IrIcon = ({className="w-8 h-8"}: {className?: string}) => {
           y2="64"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#EA6711" />
-          <stop offset="1" stop-color="#FF5002" />
+          <stop stopColor="#EA6711" />
+          <stop offset="1" stopColor="#FF5002" />
         </linearGradient>
       </defs>
     </svg>
