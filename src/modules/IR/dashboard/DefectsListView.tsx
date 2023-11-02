@@ -16,7 +16,7 @@ export const DefectListView = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data, count } = await fetchDefects(page, searchQuery);
+      const { data, count } = await fetchDefects(page, searchQuery, searchBy);
       setDefects(data);
       setCount(count!);
       console.log(count);
@@ -61,7 +61,7 @@ export const DefectListView = () => {
             setPage(ev.selected);
           }}
           pageRangeDisplayed={2}
-          pageCount={defectCount / 10}
+          pageCount={Math.ceil(defectCount / 10)}
           renderOnZeroPageCount={null}
           className="flex gap-2 items-center px-1 h-9 bg-neutral-100 border rounded-md "
           pageClassName=" bg-none hover:bg-white rounded h-7 w-7 items-center justify-center flex transition"
@@ -80,8 +80,8 @@ export const DefectListView = () => {
         <span>Encoded by</span>
       </div>
       <div className="flex flex-col">
-        {defects.map((data) => (
-          <DefectCard data={data} />
+        {defects.map((data, i) => (
+          <DefectCard data={data} key={i} />
         ))}
       </div>
     </div>
