@@ -8,7 +8,7 @@ export const fetchDefects = async (
   page: number,
   searchQuery: string,
   searchBy: number
-) => {
+): Promise<{ data: Array<NestedDefects>; count: number | null }> => {
   const { from, to } = paginate(page, 10);
   const query = supabase
     .from("defects")
@@ -27,13 +27,14 @@ export const fetchDefects = async (
   console.log(searchWith);
   const { data, count, error } = await (!stringIsNullOrWhitespace(searchQuery)
     ? query.textSearch(searchWith, searchQuery, {
-        type: "websearch",
+        type: "plain",
       })
     : query
   ).returns<Array<NestedDefects>>();
 
-  console.log(data);
-
-  if (error) throw new Error("something went wrong");
+  if (error)
+    throw new Error(
+      `Something went wrong specifically | ${error.message} at | ${error.code}`
+    );
   return { data, count };
 };

@@ -71,7 +71,7 @@ export const DefectListView = () => {
           previousClassName="h-7 w-7 flex items-center justify-center bg-orange-500 text-white rounded"
         />
       </div>
-      <div className="grid grid-cols-7 grid-rows-1 p-2 bg-neutral-300 rounded-md text-neutral-600 mt-3">
+      <div className="grid grid-cols-7 grid-rows-1 p-2 bg-neutral-300 rounded-md text-neutral-600 mt-3  text-left">
         <span className="col-span-2">Product with Defect</span>
         <span>Description</span>
         <span>Quantity</span>

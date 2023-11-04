@@ -15,26 +15,26 @@ export const IRSidebar = () => {
       </div>
       <div className="h-full mt-5">
         <div className="flex flex-col gap-1 ">
-          <SidebarButton active>
+          <SidebarButton pathVerifier="/IR/dashboard">
             <LayoutDashboard size={14} />
             Dashboard
           </SidebarButton>
-          <SidebarButton>
+          <SidebarButton pathVerifier="/IR/encode">
             <PlusIcon size={14} />
             Encode
           </SidebarButton>
-          <SidebarButton>
+          <SidebarButton pathVerifier="/IR/editDb">
             <Edit size={14} />
             Edit database
           </SidebarButton>
-          <SidebarButton>
+          <SidebarButton pathVerifier="/IR/history">
             <History size={14} />
             History
           </SidebarButton>
         </div>
       </div>
       <div className="flex flex-col p-3">
-        <SidebarButton>
+        <SidebarButton pathVerifier="/IR/help">
           <span>Help & Support</span>
         </SidebarButton>
       </div>

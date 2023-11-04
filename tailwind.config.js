@@ -20,7 +20,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["Satoshi"],
+        sans: ["Inter"],
       },
     },
   },
