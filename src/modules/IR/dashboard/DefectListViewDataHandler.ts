@@ -1,6 +1,6 @@
 import { paginate } from "../../../lib/pagination";
 import { supabase } from "../../../lib/supabase";
-import { stringIsNullOrWhitespace } from "../../../lib/usefull";
+import { stringIsNullOrWhitespace } from "../../../lib/useful";
 import { NestedDefects } from "../../../types/defects";
 import { match } from "ts-pattern";
 
@@ -23,11 +23,9 @@ export const fetchDefects = async (
     .with(2, () => "packaging.name")
     .with(3, () => "encodedBy")
     .otherwise(() => "product.productName");
-  console.log(searchBy);
-  console.log(searchWith);
   const { data, count, error } = await (!stringIsNullOrWhitespace(searchQuery)
     ? query.textSearch(searchWith, searchQuery, {
-        type: "plain",
+        type: "websearch",
       })
     : query
   ).returns<Array<NestedDefects>>();
