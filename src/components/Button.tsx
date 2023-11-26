@@ -3,7 +3,7 @@ import { Slot } from "@radix-ui/react-slot";
 import React from "react";
 import { cn } from "../lib/cn";
 
-const buttonVariants = cva(
+export const buttonVariants = cva(
   "flex gap-1 items-center rounded font-medium justify-center transition duration-75",
   {
     variants: {
