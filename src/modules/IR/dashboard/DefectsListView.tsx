@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { fetchDefects } from "./DefectListViewDataHandler";
 import { DefectCard } from "./DefectCard";
-import { NestedDefects } from "../../../types/defects";
+import { ReadableDefects } from "../../../types/defects";
 import { Input } from "../../../components/Input";
 import ReactPaginate from "react-paginate";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Combobox } from "../../../components/Combobox";
 
 export const DefectListView = () => {
-  const [defects, setDefects] = useState<Array<NestedDefects>>([]);
+  const [defects, setDefects] = useState<Array<ReadableDefects>>([]);
   const [page, setPage] = useState<number>(0);
   const [defectCount, setCount] = useState<number>(0);
   const [searchBy, setSearchBy] = useState<number>(0);
@@ -22,7 +22,7 @@ export const DefectListView = () => {
       console.log(count);
     };
     fetchData();
-  }, [page, searchQuery]);
+  }, [page, searchBy, searchQuery]);
 
   //TODO: Move react paginate to a standalone component
   return (

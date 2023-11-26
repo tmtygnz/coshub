@@ -7,29 +7,31 @@ import { AuthWrapper } from "./wrappers/auth/index.tsx";
 import { IRWrapper } from "./modules/IR/IRWrapper.tsx";
 import { IrDashboardContainer } from "./modules/IR/dashboard/IrDashboardContainer.tsx";
 import { IREncodeContainer } from "./modules/IR/encode/IREncodeContianer.tsx";
+import { Toaster } from "sonner";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <div className="bg-neutral-100 text-sm">
-      <Auth0Provider
-        domain="zolu.jp.auth0.com"
-        clientId="o50BejLEHbSy3UeFO8IfhSt2ZMdSothr"
-        authorizationParams={{
-          redirect_uri: window.location.origin,
-        }}
-        cacheLocation="localstorage"
-      >
-        <AuthWrapper>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/IR" element={<IRWrapper />}>
-                <Route path="dashboard" element={<IrDashboardContainer />} />
-                <Route path="encode" element={<IREncodeContainer />} />
-              </Route>
-            </Routes>
-          </BrowserRouter>
-        </AuthWrapper>
-      </Auth0Provider>
-    </div>
-  </React.StrictMode>
+	<React.StrictMode>
+		<div className="bg-neutral-100 text-sm">
+			<Toaster closeButton richColors visibleToasts={3} />
+			<Auth0Provider
+				domain="zolu.jp.auth0.com"
+				clientId="o50BejLEHbSy3UeFO8IfhSt2ZMdSothr"
+				authorizationParams={{
+					redirect_uri: window.location.origin,
+				}}
+				cacheLocation="localstorage"
+			>
+				<AuthWrapper>
+					<BrowserRouter>
+						<Routes>
+							<Route path="/IR" element={<IRWrapper />}>
+								<Route path="dashboard" element={<IrDashboardContainer />} />
+								<Route path="encode" element={<IREncodeContainer />} />
+							</Route>
+						</Routes>
+					</BrowserRouter>
+				</AuthWrapper>
+			</Auth0Provider>
+		</div>
+	</React.StrictMode>
 );

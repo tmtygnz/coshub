@@ -1,14 +1,14 @@
 import { paginate } from "../../../lib/pagination";
 import { supabase } from "../../../lib/supabase";
 import { stringIsNullOrWhitespace } from "../../../lib/useful";
-import { NestedDefects } from "../../../types/defects";
+import { ReadableDefects } from "../../../types/defects";
 import { match } from "ts-pattern";
 
 export const fetchDefects = async (
   page: number,
   searchQuery: string,
   searchBy: number
-): Promise<{ data: Array<NestedDefects>; count: number | null }> => {
+): Promise<{ data: Array<ReadableDefects>; count: number | null }> => {
   const { from, to } = paginate(page, 10);
   const query = supabase
     .from("defects")
@@ -28,7 +28,7 @@ export const fetchDefects = async (
         type: "websearch",
       })
     : query
-  ).returns<Array<NestedDefects>>();
+  ).returns<Array<ReadableDefects>>();
 
   if (error)
     throw new Error(

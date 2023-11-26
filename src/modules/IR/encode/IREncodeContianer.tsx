@@ -1,18 +1,13 @@
-import React, { useEffect } from "react";
-import { fetchNecessaryData } from "./EncodeDataHandler";
+import { EncodeForm } from "./EncodeForm";
 
 export const IREncodeContainer = () => {
-  useEffect(() => {
-    const fetchSomething = async () => {
-      await fetchNecessaryData();
-    };
-
-    fetchSomething();
-  }, []);
   return (
-    <div className="p-2 flex gap-2 h-full w-full">
-      <div className="h-full w-1/4 shrink-0 border rounded-md grid-rows-1 grid-cols-5"></div>
-      <div className="h-full w-full rounded-md border">a</div>
+    <div className="px-5 py-5 flex gap-2 h-full w-full flex-col ">
+      <h1 className="text-xl font-bold">Encode</h1>
+      <div className="flex h-full gap-2">
+        <EncodeForm />
+        <div className="h-full w-full rounded-md border shrink">a</div>
+      </div>
     </div>
   );
 };
