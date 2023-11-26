@@ -1,32 +1,17 @@
 import React, { useEffect, useState } from "react";
-import {
-	DefectType,
-	Defects,
-	PackagingType,
-	Places,
-	Products,
-	defectSchema,
-} from "../../../types/defects";
+import { Defects, defectSchema } from "../../../types/defects";
 import { fetchNecessaryData } from "./EncodeDataHandler";
 import { Input } from "../../../components/Input";
 import { Combobox } from "../../../components/Combobox";
 import { DateInput } from "../../../components/DateInput";
 import { Button } from "../../../components/Button";
-import { atom, useAtom } from "jotai";
+import { useAtom } from "jotai";
 import { useAuth0 } from "@auth0/auth0-react";
 import { toast } from "sonner";
-
-const currentDate = new Date();
-
-export const toEncodeAtom = atom<Array<Defects>>([]);
+import { formDataAtom, toEncodeAtom } from "./EncodeAtoms";
 
 export const EncodeForm = () => {
-	const [formData, setFormData] = useState<{
-		defectTypes: Array<DefectType>;
-		packaging: Array<PackagingType>;
-		places: Array<Places>;
-		products: Array<Products>;
-	}>();
+	const [formData, setFormData] = useAtom(formDataAtom);
 
 	const auth = useAuth0();
 
@@ -36,7 +21,7 @@ export const EncodeForm = () => {
 	const [quantity, setQuantity] = useState<number>(0);
 	const [defectTypeSelected, setDefectTypeSelected] = useState<number>(0);
 	const [areaSelected, setSelectedArea] = useState<number>(0);
-	const [date, setDate] = useState<Date>(currentDate);
+	const [date, setDate] = useState<Date>(new Date());
 
 	const [toEncode, setToEncode] = useAtom(toEncodeAtom);
 

@@ -39,13 +39,19 @@ export const defectSchema = z.object({
 	isDev: z.boolean({ required_error: "[LGI] Is dev is missing" }),
 	packaging: z
 		.number({ required_error: "Packaging Missing" })
-		.refine((value) => value != 0, { message: "Invalid packaging value. Please check and correct." }),
+		.refine((value) => value != 0, {
+			message: "Invalid packaging value. Please check and correct.",
+		}),
 	placeid: z
 		.number({ required_error: "Area Missing" })
-		.refine((value) => value != 0, { message: "Invalid place or area value. Please check and correct." }),
+		.refine((value) => value != 0, {
+			message: "Invalid place or area value. Please check and correct.",
+		}),
 	product: z
 		.number({ required_error: "Product Missing" })
-		.refine((value) => value != 0, { message: "Invalid product value. Please check and correct." }),
+		.refine((value) => value != 0, {
+			message: "Invalid product value. Please check and correct.",
+		}),
 	quantity: z
 		.number({ required_error: "[LGI] Quantity value is missing" })
 		.refine((value) => value != 0, {
