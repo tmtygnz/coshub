@@ -9,6 +9,7 @@ import { useAtom } from "jotai";
 import { useAuth0 } from "@auth0/auth0-react";
 import { toast } from "sonner";
 import { formDataAtom, toEncodeAtom } from "./EncodeAtoms";
+import { Checkbox } from "../../../components/checkbox";
 
 export const EncodeForm = () => {
 	const [formData, setFormData] = useAtom(formDataAtom);
@@ -22,6 +23,8 @@ export const EncodeForm = () => {
 	const [defectTypeSelected, setDefectTypeSelected] = useState<number>(0);
 	const [areaSelected, setSelectedArea] = useState<number>(0);
 	const [date, setDate] = useState<Date>(new Date());
+
+	const [hasCustomDefect, setHasCustomDefect] = useState<boolean>(false);
 
 	const [toEncode, setToEncode] = useAtom(toEncodeAtom);
 
@@ -143,6 +146,10 @@ export const EncodeForm = () => {
 							</div>
 						</>
 					)}
+					<Checkbox
+						checked={hasCustomDefect}
+						onCheckedChanged={() => setHasCustomDefect(!hasCustomDefect)}
+					/>
 				</div>
 			</div>
 			<Button onClick={addToList}>Add to List</Button>
