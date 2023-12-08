@@ -7,6 +7,7 @@ import {
 	Products,
 } from "../../../types/defects";
 
+
 export const toEncodeAtom = atom<Array<Defects>>([]);
 
 export const formDataAtom = atom<{

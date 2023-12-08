@@ -7,6 +7,7 @@ import ReactPaginate from "react-paginate";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Combobox } from "../../../components/Combobox";
 
+//! Just you and me to infinity
 export const DefectListView = () => {
   const [defects, setDefects] = useState<Array<ReadableDefects>>([]);
   const [page, setPage] = useState<number>(0);

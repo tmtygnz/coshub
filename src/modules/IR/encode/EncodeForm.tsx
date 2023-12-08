@@ -16,13 +16,17 @@ export const EncodeForm = () => {
 
 	const auth = useAuth0();
 
+
 	const [batchName, setBatchName] = useState<string>("");
 	const [productSelected, setProductSelected] = useState<number>(0);
 	const [packagingSelected, setPackagingSelected] = useState<number>(0);
 	const [quantity, setQuantity] = useState<number>(0);
-	const [defectTypeSelected, setDefectTypeSelected] = useState<number>(0);
+	const [defectTypeSelected, setDefectTypeSelected] = useState<number | null>(
+		0
+	);
 	const [areaSelected, setSelectedArea] = useState<number>(0);
 	const [date, setDate] = useState<Date>(new Date());
+	const [defectDescription, setDefectDescription] = useState<string>("");
 
 	const [hasCustomDefect, setHasCustomDefect] = useState<boolean>(false);
 
@@ -49,7 +53,7 @@ export const EncodeForm = () => {
 			dateEncoded: new Date(),
 			encodedBy: auth.user?.name || "",
 			batch: batchName,
-			defectDescription: "",
+			defectDescription: defectDescription,
 			isDev: import.meta.env.DEV,
 		};
 
@@ -61,6 +65,14 @@ export const EncodeForm = () => {
 		}
 		console.log(toEncode);
 	};
+
+	useEffect(() => {
+		setDefectDescription(
+			defectTypeSelected != 0 && defectTypeSelected != null
+				? formData.defectTypes[defectTypeSelected!].name!
+				: ""
+		);
+	}, [defectTypeSelected]);
 
 	return (
 		<div className="h-full w-96 shrink-0 border rounded-md flex flex-col justify-between p-3">
@@ -129,7 +141,8 @@ export const EncodeForm = () => {
 										value: a.id,
 										label: a.name!,
 									}))}
-									selected={defectTypeSelected}
+									disabled={hasCustomDefect}
+									selected={defectTypeSelected!}
 									setSelectedData={setDefectTypeSelected}
 								/>
 							</div>
@@ -148,8 +161,18 @@ export const EncodeForm = () => {
 					)}
 					<Checkbox
 						checked={hasCustomDefect}
-						onCheckedChanged={() => setHasCustomDefect(!hasCustomDefect)}
+						onCheckedChange={() => {
+							setDefectTypeSelected(null);
+							setHasCustomDefect(!hasCustomDefect);
+						}}
 					/>
+					{hasCustomDefect && (
+						<textarea
+							className="p-2 h-full border rounded-md"
+							value={defectDescription}
+							onChange={(ev) => setDefectDescription(ev.currentTarget.value)}
+						/>
+					)}
 				</div>
 			</div>
 			<Button onClick={addToList}>Add to List</Button>
