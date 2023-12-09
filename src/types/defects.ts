@@ -23,7 +23,7 @@ export const defectSchema = z.object({
 	dateEncoded: z.date(),
 	defectDescription: z
 		.string()
-		.refine((value) => stringIsNullOrWhitespace(value), {
+		.refine((value) => !stringIsNullOrWhitespace(value), {
 			message: "Defect description missing!",
 		}),
 	defPrebTp: z

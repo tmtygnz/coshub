@@ -16,7 +16,6 @@ export const EncodeForm = () => {
 
 	const auth = useAuth0();
 
-
 	const [batchName, setBatchName] = useState<string>("");
 	const [productSelected, setProductSelected] = useState<number>(0);
 	const [packagingSelected, setPackagingSelected] = useState<number>(0);
@@ -69,7 +68,9 @@ export const EncodeForm = () => {
 	useEffect(() => {
 		setDefectDescription(
 			defectTypeSelected != 0 && defectTypeSelected != null
-				? formData.defectTypes[defectTypeSelected!].name!
+				? formData.defectTypes.find(
+						(defect) => (defect.id = defectTypeSelected)
+				  )!.name!
 				: ""
 		);
 	}, [defectTypeSelected]);
