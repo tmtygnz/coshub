@@ -48,8 +48,8 @@ export const EncodeForm = () => {
 			quantity: quantity,
 			defPrebTp: defectTypeSelected,
 			placeid: areaSelected,
-			date: date,
-			dateEncoded: new Date(),
+			date: date.toISOString(),
+			dateEncoded: new Date().toISOString(),
 			encodedBy: auth.user?.name || "",
 			batch: batchName,
 			defectDescription: defectDescription,
@@ -177,7 +177,7 @@ export const EncodeForm = () => {
 					)}
 				</div>
 			</div>
-			<Button onClick={addToList} >Add to List</Button>
+			<Button onClick={addToList}>Add to List</Button>
 		</div>
 	);
 };

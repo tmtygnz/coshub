@@ -1,26 +1,27 @@
-import { Database } from "../lib/supabase/database";
+import { Database, Tables } from "../lib/supabase/database";
 import { z } from "zod";
 import { stringIsNullOrWhitespace } from "../lib/useful";
 
 export type Defects = z.infer<typeof defectSchema>;
 export type PackagingType =
 	Database["public"]["Tables"]["packaging_type"]["Row"];
-export type DefectType = Database["public"]["Tables"]["defects_type"]["Row"];
-export type Places = Database["public"]["Tables"]["places"]["Row"];
-export type Products = Database["public"]["Tables"]["products"]["Row"];
+export type DefectType = Tables<"defects_type">;
+export type Places = Tables<"places">;
+export type Products = Tables<"products">;
 export type ReadableDefects = Defects & {
 	defPrebTp: DefectType;
 	packaging: PackagingType;
 	places: Places;
 	product: Products;
 };
+
 // I really hate supabase's typescript types
 
 export const defectSchema = z.object({
 	app_version: z.number({ required_error: "App version required" }),
 	batch: z.string(),
-	date: z.date({ required_error: "Defect date is missing" }),
-	dateEncoded: z.date(),
+	date: z.string({ required_error: "Defect date is missing" }),
+	dateEncoded: z.string(),
 	defectDescription: z
 		.string()
 		.refine((value) => !stringIsNullOrWhitespace(value), {

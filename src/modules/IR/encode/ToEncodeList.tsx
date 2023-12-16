@@ -3,12 +3,14 @@ import { toEncodeAtom } from "./EncodeAtoms";
 import { ToEncodeCard } from "./ToEncodeCard";
 import { Button } from "../../../components/Button";
 import { supabase } from "../../../lib/supabase";
+import { toast } from "sonner";
 
 export const ToEncodeList = () => {
 	const [toEncode] = useAtom(toEncodeAtom);
 	const encodeDefectsToDB = async () => {
-		const {data, error } = await supabase.from("defects").insert([...toEncode	])
-	}
+		const { data, error } = await supabase.from("defects").insert(toEncode);
+		if (error) toast.error(`SPB ERR(${error.code}) ${error.message}`);
+	};
 	return (
 		<div className="h-full w-full rounded-md border shrink relative">
 			{toEncode.length == 0 ? (
@@ -20,7 +22,7 @@ export const ToEncodeList = () => {
 			) : (
 				<>
 					<div className="absolute bottom-3 left-3">
-						<Button>Submit</Button>
+						<Button onClick={() => encodeDefectsToDB()}>Submit</Button>
 					</div>
 					<div className="h-full w-full p-3">
 						<div className="grid grid-cols-7 grid-rows-1 p-2 bg-neutral-300 rounded-md text-neutral-600  text-left">
