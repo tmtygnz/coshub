@@ -56,7 +56,7 @@ export const EncodeForm = () => {
 			isDev: import.meta.env.DEV,
 		};
 
-		const result = await defectSchema.safeParse(newDefect);
+		const result = await defectSchema.safeParseAsync(newDefect);
 		if (!result.success) {
 			result.error.issues.forEach((value) => toast.error(value.message));
 		} else {
@@ -164,6 +164,7 @@ export const EncodeForm = () => {
 						checked={hasCustomDefect}
 						onCheckedChange={() => {
 							setDefectTypeSelected(null);
+							setDefectDescription("");
 							setHasCustomDefect(!hasCustomDefect);
 						}}
 					/>
@@ -176,7 +177,7 @@ export const EncodeForm = () => {
 					)}
 				</div>
 			</div>
-			<Button onClick={addToList}>Add to List</Button>
+			<Button onClick={addToList} >Add to List</Button>
 		</div>
 	);
 };

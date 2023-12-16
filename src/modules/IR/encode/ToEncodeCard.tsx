@@ -25,7 +25,9 @@ export const ToEncodeCard = ({ data }: { data: Defects }) => {
 						{formData.packaging.find((keys) => data.packaging == keys.id)?.name}
 					</span>
 					<span>{dayjs(data.date).format("MM/DD/YY")}</span>
-					<span>{data.encodedBy}</span>
+					<span>
+						{formData.places.find((keys) => data.placeid == keys.id)?.areaName}
+					</span>
 				</div>
 			</Trigger>
 			<DialogContent>Hello World</DialogContent>
