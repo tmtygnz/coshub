@@ -160,14 +160,17 @@ export const EncodeForm = () => {
 							</div>
 						</>
 					)}
-					<Checkbox
-						checked={hasCustomDefect}
-						onCheckedChange={() => {
-							setDefectTypeSelected(null);
-							setDefectDescription("");
-							setHasCustomDefect(!hasCustomDefect);
-						}}
-					/>
+					<div className="flex gap-2 items-center font-semibold text-xs">
+						<Checkbox
+							checked={hasCustomDefect}
+							onCheckedChange={() => {
+								setDefectTypeSelected(null);
+								setDefectDescription("");
+								setHasCustomDefect(!hasCustomDefect);
+							}}
+						/>
+						<p>Custom Defect</p>
+					</div>
 					{hasCustomDefect && (
 						<textarea
 							className="p-2 h-full border rounded-md"

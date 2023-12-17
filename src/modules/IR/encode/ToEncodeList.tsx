@@ -6,10 +6,14 @@ import { supabase } from "../../../lib/supabase";
 import { toast } from "sonner";
 
 export const ToEncodeList = () => {
-	const [toEncode] = useAtom(toEncodeAtom);
+	const [toEncode, setToEncode] = useAtom(toEncodeAtom);
 	const encodeDefectsToDB = async () => {
 		const { data, error } = await supabase.from("defects").insert(toEncode);
 		if (error) toast.error(`SPB ERR(${error.code}) ${error.message}`);
+		else {
+			toast.success("Defects encoded");
+			setToEncode([]);
+		}
 	};
 	return (
 		<div className="h-full w-full rounded-md border shrink relative">
@@ -33,11 +37,11 @@ export const ToEncodeList = () => {
 							<span>Date</span>
 							<span>Encoded by</span>
 						</div>
-						<div className="flex flex-col">
+						<ul className="flex flex-col">
 							{toEncode.map((data, i) => (
 								<ToEncodeCard data={data} key={i} />
 							))}
-						</div>
+						</ul>
 					</div>
 				</>
 			)}

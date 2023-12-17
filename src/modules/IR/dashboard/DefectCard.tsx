@@ -1,6 +1,12 @@
 import dayjs from "dayjs";
 import { ReadableDefects } from "../../../types/defects";
-import { Dialog, DialogContent, Trigger } from "../../../components/Dialog";
+import {
+	Dialog,
+	DialogContent,
+	DialogHeader,
+	DialogTitle,
+	Trigger,
+} from "../../../components/Dialog";
 
 export const DefectCard = ({ data }: { data: ReadableDefects }) => {
 	return (
@@ -17,7 +23,51 @@ export const DefectCard = ({ data }: { data: ReadableDefects }) => {
 					<span>{data.encodedBy}</span>
 				</div>
 			</Trigger>
-			<DialogContent>Hello World</DialogContent>
+			<DialogContent>
+				<DialogHeader>
+					<DialogTitle>Defect Detailed View</DialogTitle>
+				</DialogHeader>
+				<div className="font-mono w-full flex px-4 py-2 bg-neutral-50 justify-between">
+					<span>Batch: {data.batch}</span>
+					<span>DBRef: {data.id}</span>
+				</div>
+				<div className="p-4 w-full text-sm">
+					<div className="grid-cols-1 grid-rows-5 grid">
+						<div className="bg-neutral-200 grid-cols-2 grid-rows-1 grid p-2 rounded">
+							<span>Key</span>
+							<span>Value</span>
+						</div>
+						<div className=" grid-cols-2 grid-rows-1 grid p-2">
+							<span>AppVer</span>
+							<span>{data.app_version}</span>
+						</div>
+						<div className=" grid-cols-2 grid-rows-1 grid p-2">
+							<span>Product</span>
+							<span>{data.product.productName}</span>
+						</div>
+						<div className=" grid-cols-2 grid-rows-1 grid p-2">
+							<span>Defect</span>
+							<span>{data.defectDescription}</span>
+						</div>
+						<div className=" grid-cols-2 grid-rows-1 grid p-2">
+							<span>Packaging</span>
+							<span>{data.packaging.name}</span>
+						</div>
+						<div className=" grid-cols-2 grid-rows-1 grid p-2">
+							<span>Area</span>
+							<span>{data.places.areaName}</span>
+						</div>
+						<div className=" grid-cols-2 grid-rows-1 grid p-2">
+							<span>Quantity</span>
+							<span>{data.quantity}</span>
+						</div>
+						<div className=" grid-cols-2 grid-rows-1 grid p-2">
+							<span>Encoded by</span>
+							<span>{data.encodedBy}</span>
+						</div>
+					</div>
+				</div>
+			</DialogContent>
 		</Dialog>
 	);
 };

@@ -12,7 +12,7 @@ export const buttonVariants = cva(
         secondary:
           "bg-white hover:bg-neutral-100/80 transition text-black border ",
       },
-      size: {
+      padding: {
         default: "h-9 px-4 py-2 rounded-lg",
         sm: "h-9 rounded-lg px-3",
         lg: "h-11 rounded-lg px-8",
@@ -21,7 +21,7 @@ export const buttonVariants = cva(
     },
     defaultVariants: {
       variant: "primary",
-      size: "default",
+      padding: "default",
     },
   }
 );
@@ -33,11 +33,11 @@ export interface ButtonProps
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, variant, padding, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size }), className)}
+        className={cn(buttonVariants({ variant, padding }), className)}
         ref={ref}
         {...props}
       />
