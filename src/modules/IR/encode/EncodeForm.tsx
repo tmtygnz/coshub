@@ -62,7 +62,6 @@ export const EncodeForm = () => {
 		} else {
 			setToEncode([...toEncode, newDefect]);
 		}
-		console.log(toEncode);
 	};
 
 	useEffect(() => {

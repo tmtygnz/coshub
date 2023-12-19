@@ -12,6 +12,10 @@ const DialogPortal = ({ ...props }: DialogCore.DialogPortalProps) => (
 );
 DialogPortal.displayName = DialogCore.Portal.displayName;
 
+const DialogClose = ({ ...props }: DialogCore.DialogCloseProps) => (
+	<DialogCore.Close {...props} />
+);
+
 const DialogOverlay = forwardRef<
 	React.ElementRef<typeof DialogCore.Overlay>,
 	React.ComponentPropsWithoutRef<typeof DialogCore.Overlay>
@@ -40,11 +44,11 @@ const DialogHeader = ({
 		{...props}
 	>
 		{children}
-		<DialogCore.Close>
+		<DialogClose>
 			<Button padding="sm">
 				<X size={16} />
 			</Button>
-		</DialogCore.Close>
+		</DialogClose>
 	</div>
 );
 DialogHeader.displayName = "DialogHeader";
@@ -55,10 +59,7 @@ const DialogTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
 	<DialogCore.Title
 		ref={ref}
-		className={cn(
-			"font-semibold leading-none tracking-tight",
-			className
-		)}
+		className={cn("font-semibold leading-none tracking-tight", className)}
 		{...props}
 	/>
 ));
@@ -83,4 +84,11 @@ const DialogContent = forwardRef<
 	</DialogPortal>
 ));
 DialogContent.displayName = DialogCore.Content.displayName;
-export { Dialog, Trigger, DialogContent, DialogHeader, DialogTitle };
+export {
+	Dialog,
+	Trigger,
+	DialogContent,
+	DialogHeader,
+	DialogTitle,
+	DialogClose,
+};

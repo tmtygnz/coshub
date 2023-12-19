@@ -20,7 +20,7 @@ export default {
 				},
 			},
 			fontFamily: {
-				sans: ["Inter"],
+				sans: ["Roboto"],
 				mono: ["Azeret Mono"],
 			},
 		},

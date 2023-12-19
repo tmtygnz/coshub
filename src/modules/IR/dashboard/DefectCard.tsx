@@ -2,13 +2,26 @@ import dayjs from "dayjs";
 import { ReadableDefects } from "../../../types/defects";
 import {
 	Dialog,
+	DialogClose,
 	DialogContent,
 	DialogHeader,
 	DialogTitle,
 	Trigger,
 } from "../../../components/Dialog";
+import { Button } from "../../../components/Button";
+import { toast } from "sonner";
+import { supabase } from "../../../lib/supabase";
 
 export const DefectCard = ({ data }: { data: ReadableDefects }) => {
+	const deleteDefect = async () => {
+		const { error } = await supabase
+			.from("defects")
+			.delete()
+			.eq("id", data?.id!);
+		if (error) toast.error(error.message);
+		else toast.success("Defect Deleted");
+	};
+
 	return (
 		<Dialog>
 			<Trigger>
@@ -66,6 +79,22 @@ export const DefectCard = ({ data }: { data: ReadableDefects }) => {
 							<span>{data.encodedBy}</span>
 						</div>
 					</div>
+					<DialogClose>
+						<Button
+							onClick={() =>
+								toast("Do you really want to delete this defect?", {
+									action: {
+										label: "Yes! No Regrets!",
+										onClick: async () => {
+											await deleteDefect();
+										},
+									},
+								})
+							}
+						>
+							Hello
+						</Button>
+					</DialogClose>
 				</div>
 			</DialogContent>
 		</Dialog>
