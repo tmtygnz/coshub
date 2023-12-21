@@ -92,7 +92,7 @@ export const DefectCard = ({ data }: { data: ReadableDefects }) => {
 								})
 							}
 						>
-							Hello
+							Delete
 						</Button>
 					</DialogClose>
 				</div>
