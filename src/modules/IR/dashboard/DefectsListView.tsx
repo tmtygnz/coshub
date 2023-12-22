@@ -24,8 +24,21 @@ export const DefectListView = () => {
 	};
 
 	useEffect(() => {
-		// do irl here
-	})
+		const realtime = supabase
+			.channel("realtime-turret-defects")
+			.on(
+				"postgres_changes",
+				{ event: "*", schema: "public", table: "defects" },
+				(payload) => {
+					fetchData();
+				}
+			)
+			.subscribe();
+
+		return () => {
+			realtime.unsubscribe();
+		};
+	}, []);
 
 	useEffect(() => {
 		fetchData();
