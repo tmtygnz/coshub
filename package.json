@@ -36,6 +36,7 @@
 		"react-dom": "^18.2.0",
 		"react-hooks-worker": "^1.0.4",
 		"react-paginate": "^8.2.0",
+		"react-resizable-panels": "^1.0.4",
 		"react-router-dom": "^6.21.0",
 		"recharts": "^2.10.3",
 		"sonner": "^1.2.4",

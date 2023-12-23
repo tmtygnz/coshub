@@ -6,5 +6,5 @@
   background: #e55e0b;
 }
 .stable-scroll {
-  scrollbar-gutter: stable both-edges;
+  scrollbar-gutter: stable ;
 }

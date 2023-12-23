@@ -5,7 +5,7 @@ import { ChartComponent } from "./ChartComponent";
 import { Calendar, ListChecks } from "lucide-react";
 import { DefectListView } from "./DefectsListView";
 
-export const IrDashboardContainer = () => {
+export const IRDashboardContainer = () => {
   const [graphData, setGraphData] = useState<{
     sumDef: {
       summarizedDefects: ChartData[];
